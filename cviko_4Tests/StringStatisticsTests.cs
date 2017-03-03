@@ -1,7 +1,7 @@
-﻿using cviko_4;
+﻿using BOOPproject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace cviko_4Tests
+namespace BOOPprojectTests
 {
     [TestClass()]
     public class StringStatisticsTests
