@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cviko_4", "cviko_4\cviko_4.csproj", "{59B515FE-7C14-40D7-B35E-6AFE5866E244}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BOOPproject", "cviko_4\BOOPproject.csproj", "{59B515FE-7C14-40D7-B35E-6AFE5866E244}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cviko_4Tests", "cviko_4Tests\cviko_4Tests.csproj", "{619DF0EA-C16D-497D-A68A-FA3A01C9987C}"
 EndProject

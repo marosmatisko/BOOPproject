@@ -55,9 +55,9 @@
     <Compile Include="StringStatisticsTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\cviko_4\cviko_4.csproj">
+    <ProjectReference Include="..\cviko_4\BOOPproject.csproj">
       <Project>{59B515FE-7C14-40D7-B35E-6AFE5866E244}</Project>
-      <Name>cviko_4</Name>
+      <Name>BOOPproject</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
