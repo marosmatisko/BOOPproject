@@ -4,7 +4,7 @@ namespace BOOPproject
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             string text = "Toto je retezec predstavovany nekolika radky,\n"
                          + "ktere jsou od sebe oddeleny znakem LF (Line Feed).\n"
