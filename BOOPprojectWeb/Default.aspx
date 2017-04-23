@@ -57,19 +57,18 @@
             </asp:TableRow>
         </asp:Table>
 
-        <p><asp:Label ID="CharMap" runat="server" Text="Label"></asp:Label><br />
-        <br>
-        <asp:Label ID="MostFreqWord" runat="server" Text="Label"></asp:Label><br />
-        <br>
-        <asp:Label ID="LongestSntc" runat="server" Text="Label"></asp:Label><br />
-        <br>
-        <asp:Label ID="LongestWrds" runat="server" Text="Label"></asp:Label><br />
-        <br>
-        <asp:Label ID="ShortestSntc" runat="server" Text="Label"></asp:Label><br />
-        <br>
-        <asp:Label ID="ShortestWrds" runat="server" Text="Label"></asp:Label><br />
-        <br>
-        <asp:Label ID="WrdsMap" runat="server" Text="Label"></asp:Label><br /></p>
+        <p>
+            Most frequent word: 
+            <asp:Label ID="MostFreqWord" runat="server" Text=""></asp:Label><br />
+            Longest sentences: 
+            <asp:Label ID="LongestSntc" runat="server" Text=""></asp:Label><br />
+            Longest words: 
+            <asp:Label ID="LongestWrds" runat="server" Text=""></asp:Label><br />
+            Shortest sentences:
+            <asp:Label ID="ShortestSntc" runat="server" Text=""></asp:Label><br />
+            Shortest words:
+            <asp:Label ID="ShortestWrds" runat="server" Text=""></asp:Label><br />
+        </p>
     </div>
 </body>
 </html>
