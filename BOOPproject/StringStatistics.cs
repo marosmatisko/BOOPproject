@@ -61,7 +61,7 @@ namespace BOOPproject
             var lenght = longest
                 ? sourceList.OrderByDescending(s => s.Length).First().Length
                 : sourceList.OrderByDescending(s => s.Length).Last().Length;
-            return string.Join("", sourceList.Select(s => s.Length == lenght ? (s + ", ") : null)).Trim(' ', ',');
+            return string.Join("", sourceList.Select(s => s.Length == lenght ? (s + ", ") : null).Distinct()).Trim(' ', ',');
         }
 
         public string GetExtremeFrequentWordsString(bool most)
