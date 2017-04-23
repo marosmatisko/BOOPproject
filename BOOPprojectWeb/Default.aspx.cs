@@ -24,6 +24,14 @@ namespace BOOPprojectWeb {
             ResultsTable.Rows[6].Cells[1].Text = Convert.ToString(statistics.GetVowelNumber());
             ResultsTable.Rows[7].Cells[1].Text = Convert.ToString(statistics.GetLinesNumber());
             ResultsTable.Rows[8].Cells[1].Text = Convert.ToString(statistics.GetSpecialCharactersNumber());
+
+            CharMap.Text = statistics.GetCharactersMap();
+            MostFreqWord.Text = statistics.GetExtremeFrequentWordsString(true);
+            LongestSntc.Text = statistics.GetLongestSentences();
+            LongestWrds.Text = statistics.GetLongestWords();
+            ShortestSntc.Text = statistics.GetShortestSentences();
+            ShortestWrds.Text = statistics.GetShortestWords();
+            WrdsMap.Text = statistics.GetWordsMap();
         }
     }
 }
