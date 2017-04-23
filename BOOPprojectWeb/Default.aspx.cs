@@ -31,12 +31,15 @@ namespace BOOPprojectWeb {
             ShortestSntc.Text = statistics.GetShortestSentences();
             ShortestWrds.Text = statistics.GetShortestWords();
 
-            foreach (KeyValuePair<string, int> entry in statistics.WordMap.OrderBy(key => key.Key)) {
+            WrdsMapDiv.InnerHtml = "";
+            CharMapDiv.InnerHtml = "";
+
+            foreach (KeyValuePair<string, int> entry in statistics.WordMap.OrderByDescending(key => key.Value).ThenBy(key => key.Key)) {
                 WrdsMapDiv.InnerHtml +=
                     $"<a href=\"#\" data-toggle=\"tooltip\" title=\"{entry.Value}\">{entry.Key}</a> | ";
             }
 
-            foreach (KeyValuePair<char, int> entry in statistics.CharMap.OrderBy(key => key.Key)) {
+            foreach (KeyValuePair<char, int> entry in statistics.CharMap.OrderByDescending(key => key.Value).ThenBy(key => key.Key)) {
                 CharMapDiv.InnerHtml +=
                     $"<a href=\"#\" data-toggle=\"tooltip\" title=\"{entry.Value}\">{entry.Key}</a> | ";
             }      
