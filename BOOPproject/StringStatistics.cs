@@ -18,7 +18,7 @@ namespace BOOPproject
         {
             _text = text;
             _wordList = Regex.Split(text, @"[^\w]+").Where(s => s != string.Empty).ToList();
-            _sentenceList = Regex.Split(text, @"(?<=[.!?])\s+(?=[A-Z])").ToList();
+            _sentenceList = Regex.Split(text, @"(?<=[.!?(""?)])\s+(?=[A-Z])").ToList();
             for (int i = 0; i < _sentenceList.Count; i++)
             {
                 _sentenceList[i] = _sentenceList[i].Replace(Environment.NewLine, "").Trim();
@@ -45,6 +45,8 @@ namespace BOOPproject
         public int GetWordsNumber() => _wordList.Count;
 
         public int GetLinesNumber() => Regex.Split(_text, @"\n+").Count(s => s != string.Empty);
+
+        public int GetParagraphNumber() => Regex.Split(_text, @"\r\n{2,}").Count(s => s != string.Empty);
 
         public int GetSentencesNumber() => _sentenceList.Count;
 
