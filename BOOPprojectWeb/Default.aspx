@@ -73,6 +73,10 @@
             <asp:Label ID="ShortestWrds" runat="server" Text=""></asp:Label><br />
         </p>
     </div>
+    <div runat="server" id="WrdsMapDiv">
+    </div>
+    <div runat="server" id="CharMapDiv">
+    </div>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();

@@ -49,15 +49,6 @@ namespace BOOPprojectWeb {
         protected global::System.Web.UI.WebControls.Table ResultsTable;
         
         /// <summary>
-        /// CharMap control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label CharMap;
-        
-        /// <summary>
         /// MostFreqWord control.
         /// </summary>
         /// <remarks>
@@ -103,12 +94,21 @@ namespace BOOPprojectWeb {
         protected global::System.Web.UI.WebControls.Label ShortestWrds;
         
         /// <summary>
-        /// WrdsMap control.
+        /// WrdsMapDiv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label WrdsMap;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl WrdsMapDiv;
+        
+        /// <summary>
+        /// CharMapDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CharMapDiv;
     }
 }
