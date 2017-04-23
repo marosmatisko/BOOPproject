@@ -1,7 +1,6 @@
-﻿using BOOPproject;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace BOOPprojectTests
+namespace BOOPproject.Tests
 {
     [TestClass()]
     public class StringStatisticsTests
@@ -31,6 +30,16 @@ namespace BOOPprojectTests
             const string text = "Toto je skusobny text so skr. a dvomi!\n Vetami.\nLol\n\n";
             var stat = new StringStatistics(text);
             var result = stat.GetLinesNumber();
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void GetParagraphNumberTest()
+        {
+            const int expected = 2;
+            const string text = "Toto je skusobny text so skr. a dvomi!\r\n\n Vetami.\nLol\n\n";
+            var stat = new StringStatistics(text);
+            var result = stat.GetParagraphNumber();
             Assert.AreEqual(expected, result);
         }
 
@@ -111,7 +120,7 @@ namespace BOOPprojectTests
             const string expected = "Toto: 1\nje: 1\nskusobny: 2\ntext: 1\nFakt: 1\nText: 1";
             const string text = "Toto je skusobny text!\n Fakt skusobny.\nText\n\n";
             var stat = new StringStatistics(text);
-            var result = stat.GetWordsMap();
+            var result = stat.GetWordsMapInString();
             Assert.IsTrue(result.StartsWith(expected));
         }
 
@@ -121,7 +130,7 @@ namespace BOOPprojectTests
             const string expected = "T: 2\no: 3\nt: 4\nj: 1\ne: 3\ns: 2\nk: 1\nu: 1\nb: 1\nn: 1\ny: 1\nx: 2";
             const string text = "Toto je skusobny text!\nText\n\n";
             var stat = new StringStatistics(text);
-            var result = stat.GetCharactersMap();
+            var result = stat.GetCharactersMapInString();
             Assert.IsTrue(result.StartsWith(expected));
         }
 

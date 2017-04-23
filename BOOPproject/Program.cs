@@ -18,7 +18,7 @@ namespace BOOPproject
             Console.WriteLine("Shortest string:{0}", stats.GetShortestWords());
             Console.WriteLine("Most frequent words:{0}", stats.GetExtremeFrequentWordsString(true));
             Console.WriteLine("Alphabetical words:{0}", stats.GetAlphabeticalWords());
-            Console.WriteLine("Word Map:{0}", stats.GetWordsMap());
+            Console.WriteLine("Word Map:{0}", stats.GetWordsMapInString());
 
             Console.ReadLine();
         }

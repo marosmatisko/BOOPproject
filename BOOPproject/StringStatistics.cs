@@ -9,35 +9,35 @@ namespace BOOPproject
     {
         private readonly List<string> _wordList;
         private readonly List<string> _sentenceList;
-        private readonly Dictionary<string, int> _wordMap = new Dictionary<string, int>();
-        private readonly Dictionary<char, int> _charMap = new Dictionary<char, int>();
-        private readonly Dictionary<char, int> _specialMaps = new Dictionary<char, int>();
+        public Dictionary<string, int> WordMap { get; } = new Dictionary<string, int>();
+        public Dictionary<char, int> CharMap { get; } = new Dictionary<char, int>();
+        public Dictionary<char, int> SpecialMaps { get; }= new Dictionary<char, int>();
         private readonly string _text;
 
         public StringStatistics(string text)
         {
             _text = text;
             _wordList = Regex.Split(text, @"[^\w]+").Where(s => s != string.Empty).ToList();
-            _sentenceList = Regex.Split(text, @"(?<=[.!?(""?)])\s+(?=[A-Z])").ToList();
+            _sentenceList = Regex.Split(text, @"(?<=[.!?]|[.!?][""“])\s+(?=[„""A-Z])").ToList();
             for (int i = 0; i < _sentenceList.Count; i++)
             {
                 _sentenceList[i] = _sentenceList[i].Replace(Environment.NewLine, "").Trim();
                 if(_sentenceList[i] == "") _sentenceList.RemoveAt(i);
             }
             foreach (var word in _wordList)
-                if (_wordMap.ContainsKey(word)) _wordMap[word]++;
-                else _wordMap.Add(word, 1);
+                if (WordMap.ContainsKey(word)) WordMap[word]++;
+                else WordMap.Add(word, 1);
             foreach (var character in text.ToCharArray())
             {
                 if (char.IsLetterOrDigit(character))
                 {
-                    if (_charMap.ContainsKey(character)) _charMap[character]++;
-                    else _charMap.Add(character, 1);
+                    if (CharMap.ContainsKey(character)) CharMap[character]++;
+                    else CharMap.Add(character, 1);
                 }
                 else if (!char.IsWhiteSpace(character))
                 {
-                    if (_specialMaps.ContainsKey(character)) _specialMaps[character]++;
-                    else _specialMaps.Add(character, 1);
+                    if (SpecialMaps.ContainsKey(character)) SpecialMaps[character]++;
+                    else SpecialMaps.Add(character, 1);
                 }
             }
         }
@@ -68,17 +68,17 @@ namespace BOOPproject
 
         public string GetExtremeFrequentWordsString(bool most)
         {
-            var frequent = _wordMap[_wordMap.Keys.First()];
-            foreach (var count in _wordMap.Values)
+            var frequent = WordMap[WordMap.Keys.First()];
+            foreach (var count in WordMap.Values)
                 if ((count > frequent && most) || (count < frequent && !most)) frequent = count;
-            return string.Join("", _wordMap.Where(pair => pair.Value == frequent).Select(pair => pair.Key));
+            return string.Join("", WordMap.Where(pair => pair.Value == frequent).Select(pair => pair.Key));
         }
 
         public string GetAlphabeticalWords() => string.Join(", ", _wordList.OrderBy(q => q).ToList());
 
-        public string GetWordsMap() => GetStringMap(_wordMap);
+        public string GetWordsMapInString() => GetStringMap(WordMap);
 
-        public string GetCharactersMap() => GetStringMap(_charMap);
+        public string GetCharactersMapInString() => GetStringMap(CharMap);
 
         private static string GetStringMap<T>(Dictionary<T, int> temp)
             => string.Join("\n", temp.ToList()).Replace("[", "").Replace("]", "").Replace(",", ":"); 
@@ -86,21 +86,21 @@ namespace BOOPproject
         public int GetVowelNumber()
         {
             int count = 0;
-            foreach (var character in _charMap.Keys.ToArray())
+            foreach (var character in CharMap.Keys.ToArray())
                 if (char.ToLower(character) == 'a' || char.ToLower(character) == 'e' || char.ToLower(character) == 'i' ||
                     char.ToLower(character) == 'o' || char.ToLower(character) == 'u' || char.ToLower(character) == 'y')
-                    count += _charMap[character];
+                    count += CharMap[character];
             return count;
         }
 
-        public int GetConsonantNumber() => _charMap.Sum(list => list.Value) - GetVowelNumber();
+        public int GetConsonantNumber() => CharMap.Sum(list => list.Value) - GetVowelNumber();
 
-        public int GetSpecialCharactersNumber() => _specialMaps.Sum(list => list.Value);
+        public int GetSpecialCharactersNumber() => SpecialMaps.Sum(list => list.Value);
 
-        public int GetQuestionsNumber() => _sentenceList.Count(x => x.EndsWith("?"));
+        public int GetQuestionsNumber() => _sentenceList.Count(x => x.EndsWith("?") | x.EndsWith("?\""));
 
-        public int GetImperativeNumber() => _sentenceList.Count(x => x.EndsWith("!"));
+        public int GetImperativeNumber() => _sentenceList.Count(x => x.EndsWith("!") | x.EndsWith("!\""));
 
-        public int GetIndicativeNumber() => _sentenceList.Count(x => x.EndsWith("."));
+        public int GetIndicativeNumber() => _sentenceList.Count(x => x.EndsWith(".") | x.EndsWith(".\""));
     }
 }
