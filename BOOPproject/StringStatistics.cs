@@ -97,10 +97,10 @@ namespace BOOPproject
 
         public int GetSpecialCharactersNumber() => SpecialMaps.Sum(list => list.Value);
 
-        public int GetQuestionsNumber() => _sentenceList.Count(x => x.EndsWith("?") | x.EndsWith("?\""));
+        public int GetQuestionsNumber() => _sentenceList.Count(x => new [] {"?", "?\"", @"?“" }.Any(x.EndsWith));
 
-        public int GetImperativeNumber() => _sentenceList.Count(x => x.EndsWith("!") | x.EndsWith("!\""));
+        public int GetImperativeNumber() => _sentenceList.Count(x => new[] { "!", "!\"", @"!“" }.Any(x.EndsWith));
 
-        public int GetIndicativeNumber() => _sentenceList.Count(x => x.EndsWith(".") | x.EndsWith(".\""));
+        public int GetIndicativeNumber() => _sentenceList.Count(x => new[] { ".", ".\"", @".“" }.Any(x.EndsWith));
     }
 }
