@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-md-12">
                 <center>
-                <img src="./images/logo.png"/>
+                <img src="./images/logo.png" style="height: 147px; width: 526px"/>
                 </center>
                 <p>
             </div>
