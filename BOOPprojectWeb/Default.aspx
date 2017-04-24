@@ -13,23 +13,19 @@
     <asp:Image ID="logo" runat="server" />
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <center>
-                <img src="./images/logo.png" style="height: 147px; width: 526px"/>
-                </center>
+            <div class="col-md-12" style="text-align: center">
+                <img src="./images/logo.png" style="height: 147px; width: 526px" />
                 <p>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-8 col-md-8">
                 <form id="form1" runat="server">
-
                     <asp:TextBox ID="TextBox1" runat="server" Height="270" Rows="2" CssClass="form-control input-lg" TextMode="MultiLine"></asp:TextBox>
                     <p>
                         <br />
                         <asp:Button ID="Confirm_btn" runat="server" Text="Analyze" CssClass="btn btn-primary" OnClick="Confirm_btn_Click" />
                     </p>
-
                 </form>
             </div>
             <div class="col-xs-4 col-md-4">
@@ -87,8 +83,10 @@
                     <b>Shortest words:</b>
                     <asp:Label ID="ShortestWrds" runat="server" Text=""></asp:Label><br />
                 </p>
+                <b>Word statistics:</b>
                 <div runat="server" id="WrdsMapDiv">
                 </div>
+                <b>Character statistics:</b>
                 <div runat="server" id="CharMapDiv">
                 </div>
                 <script>
@@ -97,10 +95,7 @@
                     });
                 </script>
             </div>
-
         </div>
     </div>
-
-
 </body>
 </html>
