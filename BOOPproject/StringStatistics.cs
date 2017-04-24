@@ -25,8 +25,8 @@ namespace BOOPproject
                 if(_sentenceList[i] == "") _sentenceList.RemoveAt(i);
             }
             foreach (var word in _wordList)
-                if (WordMap.ContainsKey(word)) WordMap[word]++;
-                else WordMap.Add(word, 1);
+                if (WordMap.ContainsKey(word.ToLower())) ++WordMap[word.ToLower()];
+                else WordMap.Add(word.ToLower(), 1);
             foreach (var character in text.ToCharArray())
             {
                 if (char.IsLetterOrDigit(character))
