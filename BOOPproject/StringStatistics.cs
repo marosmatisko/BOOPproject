@@ -46,7 +46,7 @@ namespace BOOPproject
 
         public int GetLinesNumber() => Regex.Split(_text, @"\n+").Count(s => s != string.Empty);
 
-        public int GetParagraphNumber() => Regex.Split(_text, @"\r\n{2,}").Count(s => s != string.Empty);
+        public int GetParagraphNumber() => Regex.Matches(_text, @"[^\r\n]+((\r|\n|\r\n)[^\r\n]+)*").Count;
 
         public int GetSentencesNumber() => _sentenceList.Count;
 

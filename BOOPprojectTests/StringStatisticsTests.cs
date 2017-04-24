@@ -1,5 +1,4 @@
-﻿using BOOPproject;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BOOPproject.Tests
 {
