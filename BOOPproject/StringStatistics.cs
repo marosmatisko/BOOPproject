@@ -3,39 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace BOOPproject
-{
-    public class StringStatistics
-    {
+namespace BOOPproject {
+    public class StringStatistics {
         private readonly List<string> _wordList;
         private readonly List<string> _sentenceList;
         public Dictionary<string, int> WordMap { get; } = new Dictionary<string, int>();
         public Dictionary<char, int> CharMap { get; } = new Dictionary<char, int>();
-        public Dictionary<char, int> SpecialMaps { get; }= new Dictionary<char, int>();
+        public Dictionary<char, int> SpecialMaps { get; } = new Dictionary<char, int>();
         private readonly string _text;
 
-        public StringStatistics(string text)
-        {
+        public StringStatistics(string text) {
             _text = text;
             _wordList = Regex.Split(text, @"[^\w]+").Where(s => s != string.Empty).ToList();
             _sentenceList = Regex.Split(text, @"(?<=[.!?]|[.!?][""“])\s+(?=[„""A-Z])").ToList();
-            for (int i = 0; i < _sentenceList.Count; i++)
-            {
+            for (int i = 0; i < _sentenceList.Count; i++) {
                 _sentenceList[i] = _sentenceList[i].Replace(Environment.NewLine, "").Trim();
-                if(_sentenceList[i] == "") _sentenceList.RemoveAt(i);
+                if (_sentenceList[i] == "") _sentenceList.RemoveAt(i);
             }
             foreach (var word in _wordList)
                 if (WordMap.ContainsKey(word.ToLower())) ++WordMap[word.ToLower()];
                 else WordMap.Add(word.ToLower(), 1);
-            foreach (var character in text.ToCharArray())
-            {
-                if (char.IsLetterOrDigit(character))
-                {
+            foreach (var character in text.ToCharArray()) {
+                if (char.IsLetterOrDigit(character)) {
                     if (CharMap.ContainsKey(character)) CharMap[character]++;
                     else CharMap.Add(character, 1);
                 }
-                else if (!char.IsWhiteSpace(character))
-                {
+                else if (!char.IsWhiteSpace(character)) {
                     if (SpecialMaps.ContainsKey(character)) SpecialMaps[character]++;
                     else SpecialMaps.Add(character, 1);
                 }
@@ -58,16 +51,14 @@ namespace BOOPproject
 
         public string GetShortestSentences() => GetExtremeStrings(_sentenceList, false);
 
-        private static string GetExtremeStrings(List<string> sourceList, bool longest)
-        {
+        private static string GetExtremeStrings(List<string> sourceList, bool longest) {
             var length = longest
                 ? sourceList.OrderByDescending(s => s.Length).First().Length
                 : sourceList.OrderByDescending(s => s.Length).Last().Length;
             return string.Join("", sourceList.Select(s => s.Length == length ? (s + ", ") : null).Distinct()).Trim(' ', ',');
         }
 
-        public string GetExtremeFrequentWordsString(bool most)
-        {
+        public string GetExtremeFrequentWordsString(bool most) {
             var frequent = WordMap[WordMap.Keys.First()];
             foreach (var count in WordMap.Values)
                 if ((count > frequent && most) || (count < frequent && !most)) frequent = count;
@@ -81,10 +72,9 @@ namespace BOOPproject
         public string GetCharactersMapInString() => GetStringMap(CharMap);
 
         private static string GetStringMap<T>(Dictionary<T, int> temp)
-            => string.Join("\n", temp.ToList()).Replace("[", "").Replace("]", "").Replace(",", ":"); 
+            => string.Join("\n", temp.ToList()).Replace("[", "").Replace("]", "").Replace(",", ":");
 
-        public int GetVowelNumber()
-        {
+        public int GetVowelNumber() {
             int count = 0;
             foreach (var character in CharMap.Keys.ToArray())
                 if (char.ToLower(character) == 'a' || char.ToLower(character) == 'e' || char.ToLower(character) == 'i' ||
@@ -99,7 +89,7 @@ namespace BOOPproject
 
         public int GetSpecialCharactersNumber() => SpecialMaps.Sum(list => list.Value);
 
-        public int GetQuestionsNumber() => _sentenceList.Count(x => new [] {"?", "?\"", @"?“" }.Any(x.EndsWith));
+        public int GetQuestionsNumber() => _sentenceList.Count(x => new[] { "?", "?\"", @"?“" }.Any(x.EndsWith));
 
         public int GetImperativeNumber() => _sentenceList.Count(x => new[] { "!", "!\"", @"!“" }.Any(x.EndsWith));
 
