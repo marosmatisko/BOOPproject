@@ -83,8 +83,10 @@
                     <b>Shortest words:</b>
                     <asp:Label ID="ShortestWrds" runat="server" Text=""></asp:Label><br />
                 </p>
+                <b>Word statistics:</b>
                 <div runat="server" id="WrdsMapDiv">
                 </div>
+                <b>Character statistics:</b>
                 <div runat="server" id="CharMapDiv">
                 </div>
                 <script>
