@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using BOOPproject;
 
 namespace BOOPprojectWeb {
-    public partial class Default : System.Web.UI.Page {
-        protected void Page_Load(object sender, EventArgs e) {
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {}
 
-        }
-
-        protected void Confirm_btn_Click(object sender, EventArgs e) {
+        protected void Confirm_btn_Click(object sender, EventArgs e)
+        {
             StringStatistics statistics = new StringStatistics(TextBox1.Text);
 
             ResultsTable.Rows[0].Cells[1].Text = Convert.ToString(statistics.GetSentencesNumber());
@@ -31,18 +33,18 @@ namespace BOOPprojectWeb {
             ShortestSntc.Text = statistics.GetShortestSentences();
             ShortestWrds.Text = statistics.GetShortestWords();
 
-            WrdsMapDiv.InnerHtml = "";
-            CharMapDiv.InnerHtml = "";
+            PrintDicionary(statistics.WordMap, statistics.GetWordsNumber(), WrdsMapDiv);
+            PrintDicionary(statistics.CharMap, statistics.GetCharacterCount(), CharMapDiv);
+        }
 
-            foreach (KeyValuePair<string, int> entry in statistics.WordMap.OrderByDescending(key => key.Value).ThenBy(key => key.Key)) {
-                WrdsMapDiv.InnerHtml +=
-                    $"<a href=\"#\" data-toggle=\"tooltip\" title=\"{entry.Value}\">{entry.Key}</a> | ";
+        private void PrintDicionary<T>(Dictionary<T, int> dic, int count, HtmlGenericControl div)
+        {
+            div.InnerHtml = "";
+            foreach (KeyValuePair<T, int> entry in dic.OrderByDescending(key => key.Value).ThenBy(key => key.Key))
+            {
+                div.InnerHtml +=
+                    $"<a href=\"#\" data-toggle=\"tooltip\" title=\"{entry.Value}x&nbsp;&nbsp;{Math.Round(Convert.ToDouble(entry.Value) / count * 100, 2)}%\">{entry.Key}</a> | ";
             }
-
-            foreach (KeyValuePair<char, int> entry in statistics.CharMap.OrderByDescending(key => key.Value).ThenBy(key => key.Key)) {
-                CharMapDiv.InnerHtml +=
-                    $"<a href=\"#\" data-toggle=\"tooltip\" title=\"{entry.Value}\">{entry.Key}</a> | ";
-            }      
         }
     }
 }

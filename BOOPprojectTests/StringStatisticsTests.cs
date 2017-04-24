@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using BOOPproject;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BOOPproject.Tests
 {
@@ -191,6 +192,16 @@ namespace BOOPproject.Tests
             const string text = "Toto je skusobny text so skr. a tromi!\n Vetamimi.\nLol?\n\n";
             var stat = new StringStatistics(text);
             var result = stat.GetIndicativeNumber();
+            Assert.AreEqual(expected, result);
+        }
+
+        [TestMethod()]
+        public void GetCharacterCountTest()
+        {
+            const int expected = 40;
+            const string text = "Toto je skusobny text so skr. a tromi!\n Vetamimi.\nLol?\n\n";
+            var stat = new StringStatistics(text);
+            var result = stat.GetCharacterCount();
             Assert.AreEqual(expected, result);
         }
     }

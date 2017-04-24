@@ -63,7 +63,7 @@ namespace BOOPproject
             var length = longest
                 ? sourceList.OrderByDescending(s => s.Length).First().Length
                 : sourceList.OrderByDescending(s => s.Length).Last().Length;
-            return string.Join("", sourceList.Select(s => s.Length == length ? (s + ", ") : null).Distinct()).Trim(' ', ',');
+            return string.Join(", ", sourceList.Select(s => s.Length == length ? (s + ", ") : null).Distinct()).Trim(' ', ',');
         }
 
         public string GetExtremeFrequentWordsString(bool most)
@@ -71,7 +71,7 @@ namespace BOOPproject
             var frequent = WordMap[WordMap.Keys.First()];
             foreach (var count in WordMap.Values)
                 if ((count > frequent && most) || (count < frequent && !most)) frequent = count;
-            return string.Join("", WordMap.Where(pair => pair.Value == frequent).Select(pair => pair.Key));
+            return string.Join(", ", WordMap.Where(pair => pair.Value == frequent).Select(pair => pair.Key));
         }
 
         public string GetAlphabeticalWords() => string.Join(", ", _wordList.OrderBy(q => q).ToList());
@@ -93,7 +93,9 @@ namespace BOOPproject
             return count;
         }
 
-        public int GetConsonantNumber() => CharMap.Sum(list => list.Value) - GetVowelNumber();
+        public int GetCharacterCount() => CharMap.Sum(list => list.Value);
+
+        public int GetConsonantNumber() => GetCharacterCount() - GetVowelNumber();
 
         public int GetSpecialCharactersNumber() => SpecialMaps.Sum(list => list.Value);
 
