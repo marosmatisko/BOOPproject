@@ -21,11 +21,21 @@
         <div class="row">
             <div class="col-xs-8 col-md-8">
                 <form id="form1" runat="server">
-                    <asp:TextBox ID="TextBox1" runat="server" Height="270" Rows="2" CssClass="form-control input-lg" TextMode="MultiLine"></asp:TextBox>
-                    <p>
-                        <br />
-                        <asp:Button ID="Confirm_btn" runat="server" Text="Analyze" CssClass="btn btn-primary" OnClick="Confirm_btn_Click" />
-                    </p>
+                    <asp:TextBox ID="TextBox1" runat="server" Height="350" Rows="2" CssClass="form-control input-lg" TextMode="MultiLine"></asp:TextBox>
+                    <p />
+                    <table>
+                        <tr>
+                            <td>
+                                <asp:Button ID="Confirm_btn" runat="server" Text="Analyze" CssClass="btn btn-primary" OnClick="Confirm_btn_Click" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:Label ID="statusLabel" runat="server" Style="text-align: right" Text=""></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+
                 </form>
             </div>
             <div class="col-xs-4 col-md-4">

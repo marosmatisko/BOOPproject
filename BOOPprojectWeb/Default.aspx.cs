@@ -12,27 +12,34 @@ namespace BOOPprojectWeb {
         protected void Page_Load(object sender, EventArgs e) { }
 
         protected void Confirm_btn_Click(object sender, EventArgs e) {
-            StringStatistics statistics = new StringStatistics(TextBox1.Text);
+            if (TextBox1.Text.Trim().Count() < 1) {
+                statusLabel.Text = "Empty input, please enter valid string!";
+                statusLabel.Font.Size = 30;
+            }
+            else {
+                statusLabel.Text = "";
+                StringStatistics statistics = new StringStatistics(TextBox1.Text);
 
-            ResultsTable.Rows[0].Cells[1].Text = Convert.ToString(statistics.GetSentencesNumber());
-            ResultsTable.Rows[1].Cells[1].Text = Convert.ToString(statistics.GetWordsNumber());
-            ResultsTable.Rows[2].Cells[1].Text = Convert.ToString(statistics.GetIndicativeNumber());
-            ResultsTable.Rows[3].Cells[1].Text = Convert.ToString(statistics.GetQuestionsNumber());
-            ResultsTable.Rows[4].Cells[1].Text = Convert.ToString(statistics.GetImperativeNumber());
-            ResultsTable.Rows[5].Cells[1].Text = Convert.ToString(statistics.GetConsonantNumber());
-            ResultsTable.Rows[6].Cells[1].Text = Convert.ToString(statistics.GetVowelNumber());
-            ResultsTable.Rows[7].Cells[1].Text = Convert.ToString(statistics.GetLinesNumber());
-            ResultsTable.Rows[8].Cells[1].Text = Convert.ToString(statistics.GetSpecialCharactersNumber());
-            ResultsTable.Rows[9].Cells[1].Text = Convert.ToString(statistics.GetParagraphNumber());
+                ResultsTable.Rows[0].Cells[1].Text = Convert.ToString(statistics.GetSentencesNumber());
+                ResultsTable.Rows[1].Cells[1].Text = Convert.ToString(statistics.GetWordsNumber());
+                ResultsTable.Rows[2].Cells[1].Text = Convert.ToString(statistics.GetIndicativeNumber());
+                ResultsTable.Rows[3].Cells[1].Text = Convert.ToString(statistics.GetQuestionsNumber());
+                ResultsTable.Rows[4].Cells[1].Text = Convert.ToString(statistics.GetImperativeNumber());
+                ResultsTable.Rows[5].Cells[1].Text = Convert.ToString(statistics.GetConsonantNumber());
+                ResultsTable.Rows[6].Cells[1].Text = Convert.ToString(statistics.GetVowelNumber());
+                ResultsTable.Rows[7].Cells[1].Text = Convert.ToString(statistics.GetLinesNumber());
+                ResultsTable.Rows[8].Cells[1].Text = Convert.ToString(statistics.GetSpecialCharactersNumber());
+                ResultsTable.Rows[9].Cells[1].Text = Convert.ToString(statistics.GetParagraphNumber());
 
-            MostFreqWord.Text = statistics.GetExtremeFrequentWordsString(true);
-            LongestSntc.Text = statistics.GetLongestSentences();
-            LongestWrds.Text = statistics.GetLongestWords();
-            ShortestSntc.Text = statistics.GetShortestSentences();
-            ShortestWrds.Text = statistics.GetShortestWords();
+                MostFreqWord.Text = statistics.GetExtremeFrequentWordsString(true);
+                LongestSntc.Text = statistics.GetLongestSentences();
+                LongestWrds.Text = statistics.GetLongestWords();
+                ShortestSntc.Text = statistics.GetShortestSentences();
+                ShortestWrds.Text = statistics.GetShortestWords();
 
-            PrintDicionary(statistics.WordMap, statistics.GetWordsNumber(), WrdsMapDiv);
-            PrintDicionary(statistics.CharMap, statistics.GetCharacterCount(), CharMapDiv);
+                PrintDicionary(statistics.WordMap, statistics.GetWordsNumber(), WrdsMapDiv);
+                PrintDicionary(statistics.CharMap, statistics.GetCharacterCount(), CharMapDiv);
+            }
         }
 
         private void PrintDicionary<T>(Dictionary<T, int> dic, int count, HtmlGenericControl div) {
