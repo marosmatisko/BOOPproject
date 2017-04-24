@@ -26,6 +26,7 @@ namespace BOOPprojectWeb {
             ResultsTable.Rows[6].Cells[1].Text = Convert.ToString(statistics.GetVowelNumber());
             ResultsTable.Rows[7].Cells[1].Text = Convert.ToString(statistics.GetLinesNumber());
             ResultsTable.Rows[8].Cells[1].Text = Convert.ToString(statistics.GetSpecialCharactersNumber());
+            ResultsTable.Rows[9].Cells[1].Text = Convert.ToString(statistics.GetParagraphNumber());
 
             MostFreqWord.Text = statistics.GetExtremeFrequentWordsString(true);
             LongestSntc.Text = statistics.GetLongestSentences();

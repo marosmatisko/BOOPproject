@@ -66,6 +66,10 @@
                         <asp:TableCell runat="server"><b>Special characters</b></asp:TableCell>
                         <asp:TableCell runat="server"></asp:TableCell>
                     </asp:TableRow>
+                    <asp:TableRow runat="server">
+                        <asp:TableCell runat="server"><b>Paragraphs</b></asp:TableCell>
+                        <asp:TableCell runat="server"></asp:TableCell>
+                    </asp:TableRow>
                 </asp:Table>
             </div>
         </div>
