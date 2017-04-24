@@ -97,5 +97,11 @@
             </div>
         </div>
     </div>
+    <div id="footer">
+        <div class="container" style="text-align: center">
+            <span class="panel-body">Created by Maroš Matisko and Ondřej Gajdušek <a href="https://github.com/marosmatisko/BOOPproject" title="Github">GitHub</a></span>
+            <span class="panel-body">People graphic by <a href="http://www.flaticon.com/authors/eucalyp">Eucalyp</a> from <a href="http://www.flaticon.com/">Flaticon</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Made with <a href="http://logomakr.com" title="Logo Maker">Logo Maker</a></span>
+        </div>
+    </div>
 </body>
 </html>
